@@ -80,7 +80,7 @@ resize_button = tk.Button(root, text="Resize Image", command=resize_option)
 resize_button.pack()
 
 # Drop area
-drop_label = tk.Label(root, text="Drop an image file here", bg="lightblue", width=40, height=20)
+drop_label = tk.Label(root, text="Drop an image file here", bg="lightblue", width=40, height=20) #this is to add the drag and drop background
 drop_label.pack(pady=20)
 drop_label.drop_target_register(DND_FILES)
 drop_label.dnd_bind('<<Drop>>', handle_drop)
