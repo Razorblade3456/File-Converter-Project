@@ -27,7 +27,10 @@ def save_file():
         return
     file_path = filedialog.asksaveasfilename(
         defaultextension=".png", #If the user does not type .png at the end this adds it automatically
-        filetypes=[("PNG files", "*.png"), #filters file types to only the ones shown
+        filetypes=[("PNG files", "*.png"), #filters file types to only the ones shown (png, jpg, bmp and gif files)
+                   ("JPEG files", "*.jpg;*jpeg"),
+                   ("Bitmap files", "*.bmp"),
+                   ("GIF files", "*.gif"),
                    ("All files", "*.*")]
     )
     if file_path: #this makes it so if and when the user chooses a location, it saves it ot the chosen location
