@@ -37,10 +37,47 @@ def save_file():
         dropped_image.save(file_path) #saves the image to the chosen path
         status_label.config(text="saved to {file_path}") #shows confirmation
 
+
+#creating a resize option
+def resize_option():
+    global dropped_image #This is to use the Image that we already dropped
+
+    if dropped_image is None: #if no image is dropped then the status label config happens
+        status_label.config(text="Please drop an image to resize first.")
+        return
+    
+    try: 
+        #this gets the width and height entered by the users in the text boxes
+        new_width = int(width_entry.get()) #This converts the text number into a number (interger)
+        new_height = int(height_entry.get()) #this does the same thing as the line above but for height
+
+        #resizing the image using PIL
+        dropped_image = dropped_image.resize((new_width, new_height)) #this allows the user to resize the image
+
+        status_label.config(text="Image resized to {new_width}x{new_height}") #this is the updated text that appears when the image is resized
+        print("resized image:", new_width, new_height) #this debugs print
+    except Exception as e:
+        status_label.config(text="Resize failed :(") #this is for the error message the pops up if something were to go wrong
+        print("Resize error:", e) #prints the error in the console
+
+
 #creating the GUI
 root = TkinterDnD.Tk() #this is the main window with Drag and Drop support
 root.title("Image dropper") #This is the Title of the window
-root.geometry("400x400") #This sets the size of the window 
+root.geometry("500x500") #This sets the size of the window 
+
+#adding labels and input boxes for width and height resize
+tk.Label(root, text="Width:").pack() #this is the label for width
+width_entry = tk.Entry(root) #this is for the input box for width
+width_entry.pack() #this line of code is what allows us to see it on the screen
+
+tk.Label(root, text="Height:").pack() #this is the label for height
+height_entry = tk.Entry(root) #this is the input box for height
+height_entry.pack() #this line of code is what allows us to see it on the screen
+
+#adding the button to initiate the resize option
+resize_button = tk.Button(root, text="Resize Image", command=resize_option)
+resize_button.pack()
 
 # Drop area
 drop_label = tk.Label(root, text="Drop an image file here", bg="lightblue", width=40, height=20)
