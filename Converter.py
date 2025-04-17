@@ -43,7 +43,7 @@ root.title("Image dropper") #This is the Title of the window
 root.geometry("400x400") #This sets the size of the window 
 
 # Drop area
-drop_label = tk.Label(root, text="Drop an image file here", bg="lightgray", width=40, height=10)
+drop_label = tk.Label(root, text="Drop an image file here", bg="lightblue", width=40, height=20)
 drop_label.pack(pady=20)
 drop_label.drop_target_register(DND_FILES)
 drop_label.dnd_bind('<<Drop>>', handle_drop)
